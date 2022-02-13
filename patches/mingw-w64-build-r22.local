@@ -82,7 +82,7 @@ mpfr_release_ver='4.1.0'
 mpc_release_ver='1.2.1'
 binutils_release_ver='2.36.1'
 gmp_release_ver='6.2.1'
-isl_release_ver='0.23'
+isl_release_ver='0.18'
 pthreads_w32_release_ver='2-9-1'
 
 ## Locations
@@ -229,7 +229,6 @@ return 1
 
 build_progress ()
 {
-if [[ "$verbose" != 'yes' ]]; then
   if [[ "$1" = 'done' ]]; then
     printf '%s\n' "$1"
     return 0
@@ -241,7 +240,6 @@ if [[ "$verbose" != 'yes' ]]; then
 
   printf '[%d/%d]: %s %s... ' "$current_step" "$total_steps" "$step_name" "$step_function"
   ((current_step++))
-fi
 }
 
 build_log ()
@@ -689,7 +687,7 @@ std_compile 'mpfr' "$mpfr_release_ver" "http://ftp.gnu.org/gnu/mpfr/mpfr-$mpfr_r
 std_compile 'mpc' "$mpc_release_ver" "http://ftp.gnu.org/gnu/mpc/mpc-$mpc_release_ver.tar.gz" "../source/mpc-$mpc_release_ver/configure" --build="$system_type" --prefix="$mpc_prefix" $gcc_host --with-gmp="$gmp_prefix" --with-mpfr="$mpfr_prefix" --disable-shared --enable-static
 
 #build isl
-std_compile 'isl' "$isl_ver" "http://isl.gforge.inria.fr/isl-$isl_ver.tar.xz" "../source/isl-$isl_ver/configure" --prefix="$isl_prefix" --build="$system_type" $gcc_host --enable-static --disable-shared --with-gmp-prefix="$gmp_prefix" --with-piplib=no --with-clang=no
+std_compile 'isl' "$isl_ver" "https://gcc.gnu.org/pub/gcc/infrastructure/isl-$isl_ver.tar.bz2" "../source/isl-$isl_ver/configure" --prefix="$isl_prefix" --build="$system_type" $gcc_host --enable-static --disable-shared --with-gmp-prefix="$gmp_prefix" --with-piplib=no --with-clang=no
 
 #build cloog
 if [[ "$gcc_ver" = "$gcc_old_release_ver" ]]; then
