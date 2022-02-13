@@ -196,7 +196,8 @@ check_missing_packages () {
   #check if WSL
   # check WSL for interop setting make sure its disabled
   # check WSL for kernel version look for version 4.19.128 current as of 11/01/2020
-  if uname -a | grep  -q -- "-microsoft" ; then
+  if uname -a | grep  -q -- "-Microsoft" ; then
+	echo "windows WSL detected"
     if cat /proc/sys/fs/binfmt_misc/WSLInterop | grep -q enabled ; then
       echo "windows WSL detected: you must first disable 'binfmt' by running this
       sudo bash -c 'echo 0 > /proc/sys/fs/binfmt_misc/WSLInterop'
