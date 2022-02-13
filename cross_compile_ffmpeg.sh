@@ -2315,7 +2315,10 @@ build_ffmpeg() {
   fi
 
   cd $output_dir
-    apply_patch file://$patch_dir/frei0r_load-shared-libraries-dynamically.diff
+    git apply "$patch_dir/0007-Add-eval-functions.patch"  # fuze: add our capabilities 1
+    #git apply "$patch_dir/0006-Add-glsl-and-gltransition-filters.patch"  # fuze: add our capabilities 2
+	
+	#apply_patch file://$patch_dir/frei0r_load-shared-libraries-dynamically.diff
     if [ "$bits_target" != "32" ]; then
 
       # SVT-VP9
